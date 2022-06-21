@@ -10,7 +10,7 @@ from jerex.entities import EntityType, RelationType
 from jerex.sampling.sampling_common import collate_fn_padding
 
 
-class DocREDDataModule(pl.LightningDataModule):
+class DocREDDataModule(pl.LightningModule):
     """ Reads entity/relation type specification and manages datasets for training/validation/testing"""
     def __init__(self, tokenizer: BertTokenizer, task_type: str, types_path: str = None,
                  train_path: str = None, valid_path: str = None, test_path: str = None,
@@ -22,7 +22,6 @@ class DocREDDataModule(pl.LightningDataModule):
                  final_valid_evaluate: bool = False,
                  prepare_data_per_node: bool = False):
         super().__init__()
-        self.prepare_data_per_node = prepare_data_per_node
 
         if types_path is not None:
             # load types
@@ -68,7 +67,8 @@ class DocREDDataModule(pl.LightningDataModule):
         self._test_dataset = None
 
         self._final_valid_evaluate = final_valid_evaluate
-
+        self.prepare_data_per_node = prepare_data_per_node
+    
     def prepare_data(self):
         pass
 
