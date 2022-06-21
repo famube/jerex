@@ -372,7 +372,8 @@ def test(cfg: TestConfig):
                                    tokenizer=tokenizer, task_type=model_class.TASK_TYPE,
                                    test_path=cfg.dataset.test_path,
                                    test_batch_size=cfg.inference.test_batch_size,
-                                   max_span_size=model.hparams.max_span_size)
+                                   max_span_size=model.hparams.max_span_size,
+                                   prepare_data_per_node=False)
 
     tb_logger = pl.loggers.TensorBoardLogger('.', 'tb')
     csv_logger = pl.loggers.CSVLogger('.', 'cv')
