@@ -19,8 +19,10 @@ class DocREDDataModule(pl.LightningDataModule):
                  sampling_processes: int = 4, neg_mention_count: int = 50,
                  neg_relation_count: int = 50, neg_coref_count: int = 50,
                  max_span_size: int = 10, neg_mention_overlap_ratio: float = 0.5,
-                 final_valid_evaluate: bool = False):
+                 final_valid_evaluate: bool = False,
+                 prepare_data_per_node: bool = False):
         super().__init__()
+        self.prepare_data_per_node = prepare_data_per_node
 
         if types_path is not None:
             # load types
