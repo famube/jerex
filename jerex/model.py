@@ -285,6 +285,7 @@ def train(cfg: TrainConfig):
                                    neg_coref_count=cfg.sampling.neg_coref_count,
                                    max_span_size=cfg.sampling.max_span_size,
                                    neg_mention_overlap_ratio=cfg.sampling.neg_mention_overlap_ratio,
+                                   prepare_data_per_node=False,
                                    final_valid_evaluate=cfg.misc.final_valid_evaluate
                                                         and cfg.datasets.test_path is None)
 
